@@ -4,7 +4,6 @@ import { message } from 'antd';
 const token = import.meta.env.PUBLIC_SERVICE_TOKEN;
 const baseURL = import.meta.env.PUBLIC_SERVICE_BASEURL;
 const Authorization = `Bearer ${token}`;
-console.log('123', import.meta.env.BASE_URL);
 const axiosInstance = axios.create({
   baseURL,
   timeout: 10000,

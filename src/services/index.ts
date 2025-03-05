@@ -17,6 +17,11 @@ function getProjectService(id: number) {
 function createProjectBranchService(id: React.Key, data: BranchFormValues) {
   return service.post(create().projects().setProjectId(id).repository().branches().finish(), data);
 }
+
+// 保护项目分支
+function protectedProjectBranchService(id: React.Key, data) {
+  return service.post(create().projects().setProjectId(id).protectedBranches().finish(), data);
+}
 // 删除项目分支
 function deleteProjectBranchService(id: React.Key, branch: string) {
   const encodedBranch = encodeURIComponent(branch);
@@ -37,6 +42,7 @@ export {
   getProjectsService,
   getProjectService,
   createProjectBranchService,
+  protectedProjectBranchService,
   deleteProjectBranchService,
   createProjectMergeRequestsService,
   getProjectBranchesService,

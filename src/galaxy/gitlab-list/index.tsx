@@ -4,11 +4,13 @@ import HistoryClipboard from '@/galaxy/gitlab-list/components/HistoryClipboard';
 import BranchSelect from './components/BranchSelect';
 import CreateBranch from './components/CreateBranch';
 import DeleteBranch from './components/DeleteBranch';
+import ProtectedBranch from './components/ProtectedBranch';
 import MergeBranch from './components/MergeBranch';
 import Refresh from './components/Refresh';
 import { useGitlabListSelectState, useGitlabListStore } from './store';
 import type { ProjectInfo } from './types';
-
+import { b } from './components/TestEsm';
+console.log(b);
 const columns = [
   {
     title: '项目名称',
@@ -67,6 +69,7 @@ const GitlabList = () => {
         <Flex justify='space-between'>
           <Space>
             <CreateBranch />
+            <ProtectedBranch />
             <DeleteBranch />
             <MergeBranch />
           </Space>

@@ -31,6 +31,10 @@ function create() {
       url.push('merge_requests');
       return factory;
     },
+    protectedBranches: () => {
+      url.push('protected_branches');
+      return factory;
+    },
     finish: () => {
       return url.join('/');
     },
