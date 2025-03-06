@@ -9,7 +9,14 @@
     "lineEnding": "lf",
     "lineWidth": 120,
     "attributePosition": "auto",
-    "ignore": ["**/package-lock.json", "**/pnpm-lock.yaml", "**/yarn.lock"]
+    "ignore": [
+      "**/package-lock.json",
+      "**/pnpm-lock.yaml",
+      "**/yarn.lock",
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/src-tauri/**"
+    ]
   },
   "organizeImports": { "enabled": true },
   "linter": {
