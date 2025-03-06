@@ -30,20 +30,4 @@ const useGitlabListSelectState = create<GitlabListSelectState>()(set => ({
   setSelected: selected => set({ selected }),
 }));
 
-interface HistoryClipboardState {
-  clipboard: string[];
-  push: (clipboard: string) => void;
-  clear: () => void;
-  setClipboard: (clipboard: HistoryClipboardState['clipboard']) => void;
-}
-
-const useHistoryClipboard = create<HistoryClipboardState>()(set => ({
-  clipboard: [],
-  push: (clipboard: string) => {
-    set(state => ({ clipboard: [...state.clipboard, clipboard] }));
-  },
-  clear: () => set({ clipboard: [] }),
-  setClipboard: (clipboard: HistoryClipboardState['clipboard']) => set({ clipboard }),
-}));
-
-export { useGitlabListStore, useGitlabListSelectState, useHistoryClipboard };
+export { useGitlabListStore, useGitlabListSelectState };

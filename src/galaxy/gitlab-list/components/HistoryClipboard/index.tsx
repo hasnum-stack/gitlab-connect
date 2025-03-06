@@ -1,4 +1,4 @@
-import { useHistoryClipboard } from '../../store';
+import { useHistoryClipboard } from '@/stores/history-clipboard';
 import toClipboard from '@/utils/toClipboard';
 import { Button, Flex } from 'antd';
 import { Copy } from 'lucide-react';

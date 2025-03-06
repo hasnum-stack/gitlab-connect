@@ -4,7 +4,7 @@ import type { ProjectInfo } from '@/galaxy/gitlab-list/types';
 import { getProjectBranchesService } from '@/services';
 import toClipboard from '@/utils/toClipboard';
 import { useDebounceFn } from 'ahooks';
-import { useHistoryClipboard } from '@/galaxy/gitlab-list/store';
+import { useHistoryClipboard } from '@/stores/history-clipboard';
 
 type BranchSelectProps = {
   record: ProjectInfo;
@@ -15,7 +15,6 @@ type Branch = {
 
 const BranchSelect = ({ record }: BranchSelectProps) => {
   const id = record?.id;
-  const pushClipboard = useHistoryClipboard(state => state.push);
   const [options, setOptions] = useState<Branch[]>([]);
   const { run: handleSearch } = useDebounceFn(
     async value => {
@@ -35,7 +34,6 @@ const BranchSelect = ({ record }: BranchSelectProps) => {
           if (!value) return;
           //直接复制到粘贴板
           await toClipboard(value);
-          pushClipboard(value);
         }}
         allowClear
         style={{

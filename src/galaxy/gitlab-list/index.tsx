@@ -9,8 +9,8 @@ import MergeBranch from './components/MergeBranch';
 import Refresh from './components/Refresh';
 import { useGitlabListSelectState, useGitlabListStore } from './store';
 import type { ProjectInfo } from './types';
-import { b } from './components/TestEsm';
-console.log(b);
+import { formSystemClipboardToHistoryClipboard } from '@/utils/toClipboard';
+
 const columns = [
   {
     title: '项目名称',
@@ -35,6 +35,9 @@ const columns = [
           <Paragraph
             copyable={{
               text,
+              onCopy: () => {
+                formSystemClipboardToHistoryClipboard();
+              },
             }}
           >
             <a href={text}>{text}</a>

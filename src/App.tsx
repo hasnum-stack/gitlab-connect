@@ -1,10 +1,12 @@
 import GitlabList from '@/galaxy/gitlab-list';
-import { FloatButton } from 'antd';
+import RightClickMenu from '@/components/RightClickMenu';
+import CopyListener from '@/components/CopyListener';
 const App = () => {
   return (
     <>
       <GitlabList />
-      <FloatButton style={{ left: 30 }} />
+      <RightClickMenu />
+      <CopyListener />
     </>
   );
 };
