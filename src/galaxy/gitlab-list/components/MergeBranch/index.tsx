@@ -80,10 +80,23 @@ function MergeBranch() {
         onCancel={() => {
           setOpen(false);
         }}
+        okText='Submit'
         footer={originNode => {
           return (
             <>
               {originNode}
+              <Button
+                color='pink'
+                variant='solid'
+                onClick={() => {
+                  for (const selectedRow of selectedRows) {
+                    const url = createMergeRequestPreview(selectedRow, form.getFieldsValue());
+                    window.open(url);
+                  }
+                }}
+              >
+                Preview
+              </Button>
               <Button
                 color='cyan'
                 variant='solid'
