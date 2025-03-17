@@ -14,6 +14,8 @@ function AntdConfig({ children }: AntdConfigProps) {
     <>
       <ConfigProvider
         theme={{
+          cssVar: true,
+          hashed: false,
           token: {
             fontFamily,
           },
