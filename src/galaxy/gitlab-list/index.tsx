@@ -21,6 +21,7 @@ const columns = [
     title: '分支',
     dataIndex: 'branch',
     key: 'branch',
+    width: 650,
     render: (_: any, record: ProjectInfo) => {
       return <BranchSelect record={record} />;
     },

@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { Select, Flex, theme } from 'antd';
+import { Select, Flex } from 'antd';
 import type { ProjectInfo } from '@/galaxy/gitlab-list/types';
 import { getProjectBranchesService } from '@/services';
 import toClipboard from '@/utils/toClipboard';
 import { useDebounceFn } from 'ahooks';
 import { GitBranch } from 'lucide-react';
 import { createStyles } from 'antd-style';
-const useStyles = createStyles(({ token, prefixCls }) => {
-  console.log(prefixCls);
+
+const useStyles = createStyles(({ token }) => {
   const primaryColor = token.colorPrimary;
   return {
     container: {
@@ -16,7 +16,7 @@ const useStyles = createStyles(({ token, prefixCls }) => {
     },
     cursor: {
       '&:hover': {
-        color: 'var(--ant-color-primary)',
+        color: primaryColor,
       },
       cursor: 'pointer',
     },
@@ -31,9 +31,11 @@ type Branch = {
 };
 
 const BranchSelect = ({ record }: BranchSelectProps) => {
+  console.log(record, 'record');
   const { styles } = useStyles();
   const id = record?.id;
   const [options, setOptions] = useState<Branch[]>([]);
+  const [value, setValue] = useState<string>('');
   const { run: handleSearch } = useDebounceFn(
     async value => {
       if (value) {
@@ -49,12 +51,17 @@ const BranchSelect = ({ record }: BranchSelectProps) => {
     <>
       <Flex align='center' gap='small'>
         <Select
+          value={value}
           onChange={async value => {
             if (!value) return;
             //直接复制到粘贴板
             await toClipboard(value);
+            setValue(value);
           }}
           allowClear
+          onClear={() => {
+            setValue('');
+          }}
           style={{
             width: 500,
           }}
@@ -67,7 +74,16 @@ const BranchSelect = ({ record }: BranchSelectProps) => {
           placeholder='请选择分支'
           onSearch={handleSearch}
         />
-        <GitBranch className={styles.cursor} />
+        {value && (
+          <GitBranch
+            className={styles.cursor}
+            onClick={() => {
+              const web_url = record.web_url;
+              const url = `${web_url}/-/tree/${value}`;
+              window.open(url);
+            }}
+          />
+        )}
       </Flex>
     </>
   );
