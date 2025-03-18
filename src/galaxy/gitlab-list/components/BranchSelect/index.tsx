@@ -76,6 +76,7 @@ const BranchSelect = ({ record }: BranchSelectProps) => {
         />
         {value && (
           <GitBranch
+            size={18}
             className={styles.cursor}
             onClick={() => {
               const web_url = record.web_url;
