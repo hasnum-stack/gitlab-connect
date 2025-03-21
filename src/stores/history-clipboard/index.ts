@@ -15,11 +15,9 @@ const useHistoryClipboard = create<HistoryClipboardState>()(set => ({
       const clipboard = state.clipboard;
 
       // 查看是否已经存在
-      if (state.clipboard.includes(value)) {
-        //删除已经存在的
-        clipboard.splice(clipboard.indexOf(value), 1);
+      if (!state.clipboard.includes(value)) {
+        clipboard.push(value);
       }
-      clipboard.unshift(value);
       return { clipboard: [...clipboard] };
     });
   },

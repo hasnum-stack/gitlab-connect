@@ -31,7 +31,6 @@ type Branch = {
 };
 
 const BranchSelect = ({ record }: BranchSelectProps) => {
-  console.log(record, 'record');
   const { styles } = useStyles();
   const id = record?.id;
   const [options, setOptions] = useState<Branch[]>([]);

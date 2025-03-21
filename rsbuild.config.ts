@@ -2,7 +2,13 @@ import { defineConfig } from '@rsbuild/core';
 import { pluginReact } from '@rsbuild/plugin-react';
 import { chunkSplit } from './config/chunkSplit';
 import { proxy } from './config/proxy';
+import { pluginDoctor } from './plugins/doctor';
 export default defineConfig({
+  output: {
+    polyfill: 'usage',
+    sourceMap: true,
+    minify: false,
+  },
   server: {
     proxy,
   },
@@ -12,5 +18,5 @@ export default defineConfig({
   performance: {
     chunkSplit,
   },
-  plugins: [pluginReact()],
+  plugins: [pluginReact(), pluginDoctor()],
 });

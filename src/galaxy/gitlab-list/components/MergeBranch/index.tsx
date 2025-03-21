@@ -3,6 +3,7 @@ import { Button, Col, Form, Input, message, Modal, Row } from 'antd';
 import { createProjectMergeRequestsService } from '@/services';
 import { useEffect, useState } from 'react';
 import { useGitlabListSelectState } from '../../store';
+import { useHistoryClipboard } from '@/stores/history-clipboard';
 import type { ProjectInfo } from '@/galaxy/gitlab-list/types';
 
 const FormItem = Form.Item;
@@ -31,6 +32,10 @@ const createGoToProcess = () => {
   return [PUBLIC_SERVICE_TARGET, '/dashboard/merge_requests?', `assignee_username=${PUBLIC_PROJECT_USERNAME}`].join('');
 };
 
+/**
+ * 根据分支创建合并请求
+ * @param form
+ */
 const useMergeTitle = ({ form }: { form: FormInstance<FormValues> }) => {
   const source_branch = Form.useWatch('source_branch', form);
   const target_branch = Form.useWatch('target_branch', form);
@@ -39,12 +44,30 @@ const useMergeTitle = ({ form }: { form: FormInstance<FormValues> }) => {
   }, [source_branch, target_branch, form]);
 };
 
+/**
+ * 合并分支根据粘贴板提供建议
+ * @param open
+ * @param form
+ */
+const useSuggestBranch = ({ open, form }: { open: boolean; form: FormInstance<FormValues> }) => {
+  const historyClipboard = useHistoryClipboard(state => state.clipboard);
+  useEffect(() => {
+    if (open) {
+      if (historyClipboard.length >= 2) {
+        const [first, second] = historyClipboard;
+        form.setFieldsValue({ source_branch: first, target_branch: second });
+      }
+    }
+  }, [open, historyClipboard, form]);
+};
+
 function MergeBranch() {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const selectedRows = useGitlabListSelectState(state => state.selected);
   const [form] = Form.useForm<FormValues>();
   useMergeTitle({ form });
+  useSuggestBranch({ form, open });
 
   return (
     <>
@@ -85,6 +108,15 @@ function MergeBranch() {
           return (
             <>
               {originNode}
+              <Button
+                color='green'
+                variant='solid'
+                onClick={() => {
+                  form.resetFields();
+                }}
+              >
+                Reset
+              </Button>
               <Button
                 color='pink'
                 variant='solid'
