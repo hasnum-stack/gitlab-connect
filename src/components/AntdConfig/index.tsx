@@ -18,6 +18,7 @@ function AntdConfig({ children }: AntdConfigProps) {
           hashed: false,
           token: {
             fontFamily,
+            colorPrimary: '#00B96B',
           },
         }}
       >
