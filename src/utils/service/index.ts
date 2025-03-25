@@ -5,7 +5,7 @@ const token = import.meta.env.PUBLIC_SERVICE_TOKEN;
 const baseURL = import.meta.env.PUBLIC_SERVICE_BASEURL;
 const Authorization = `Bearer ${token}`;
 
-const axiosInstance: service = axios.create({
+const axiosInstance: Instance = axios.create({
   baseURL,
   timeout: 10000,
   headers: { Authorization },
@@ -36,7 +36,7 @@ axiosInstance.interceptors.response.use(
   },
 );
 
-interface service extends AxiosInstance {
+interface Instance extends AxiosInstance {
   <R = unknown, D = unknown>(config: AxiosRequestConfig<D>): Promise<R>;
   <R = unknown, D = unknown>(url: string, config?: AxiosRequestConfig<D>): Promise<R>;
   request<R = unknown, D = unknown>(config: AxiosRequestConfig<D>): Promise<R>;
