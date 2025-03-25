@@ -10,16 +10,23 @@ function getProjectsService(params?: any) {
 }
 // 获取项目详情
 function getProjectService(id: number) {
-  return service.get<ProjectInfo>(create().projects().setProjectId(id).finish());
+  return service.get<ProjectInfo>(create().projects().setProjectId(id).finish(), {
+    params: {
+      test: 123,
+    },
+  });
 }
 
 // 创建项目分支
 function createProjectBranchService(id: React.Key, data: BranchFormValues) {
-  return service.post(create().projects().setProjectId(id).repository().branches().finish(), data);
+  return service.post<undefined, BranchFormValues>(
+    create().projects().setProjectId(id).repository().branches().finish(),
+    data,
+  );
 }
 
 // 保护项目分支
-function protectedProjectBranchService(id: React.Key, data) {
+function protectedProjectBranchService(id: React.Key, data: { name: string }) {
   return service.post(create().projects().setProjectId(id).protectedBranches().finish(), data);
 }
 // 删除项目分支

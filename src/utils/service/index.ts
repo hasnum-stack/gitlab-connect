@@ -1,10 +1,11 @@
 import axios, { HttpStatusCode } from 'axios';
-import type { AxiosInstance } from 'axios';
+import type { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { message } from 'antd';
 const token = import.meta.env.PUBLIC_SERVICE_TOKEN;
 const baseURL = import.meta.env.PUBLIC_SERVICE_BASEURL;
 const Authorization = `Bearer ${token}`;
-const axiosInstance = axios.create({
+
+const axiosInstance: service = axios.create({
   baseURL,
   timeout: 10000,
   headers: { Authorization },
@@ -34,13 +35,21 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(error);
   },
 );
-const serviceInstance = {
-  request: <T>(...args: Parameters<AxiosInstance['request']>) => axiosInstance.request<never, T>(...args),
-  get: <T>(...args: Parameters<AxiosInstance['get']>) => axiosInstance.get<never, T>(...args),
-  post: <T>(...args: Parameters<AxiosInstance['post']>) => axiosInstance.post<never, T>(...args),
-  postForm: <T>(...args: Parameters<AxiosInstance['post']>) => axiosInstance.post<never, T>(...args),
-  put: <T>(...args: Parameters<AxiosInstance['put']>) => axiosInstance.put<never, T>(...args),
-  delete: <T>(...args: Parameters<AxiosInstance['delete']>) => axiosInstance.delete<never, T>(...args),
-};
 
-export default serviceInstance;
+interface service extends AxiosInstance {
+  <R = unknown, D = unknown>(config: AxiosRequestConfig<D>): Promise<R>;
+  <R = unknown, D = unknown>(url: string, config?: AxiosRequestConfig<D>): Promise<R>;
+  request<R = unknown, D = unknown>(config: AxiosRequestConfig<D>): Promise<R>;
+  get<R = unknown, D = unknown>(url: string, config?: AxiosRequestConfig<D>): Promise<R>;
+  delete<R = unknown, D = unknown>(url: string, config?: AxiosRequestConfig<D>): Promise<R>;
+  head<R = unknown, D = unknown>(url: string, config?: AxiosRequestConfig<D>): Promise<R>;
+  options<R = unknown, D = unknown>(url: string, config?: AxiosRequestConfig<D>): Promise<R>;
+  post<R = unknown, D = unknown>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<R>;
+  put<R = unknown, D = unknown>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<R>;
+  patch<R = unknown, D = unknown>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<R>;
+  postForm<R = unknown, D = unknown>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<R>;
+  putForm<R = unknown, D = unknown>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<R>;
+  patchForm<R = unknown, D = unknown>(url: string, data?: D, config?: AxiosRequestConfig<D>): Promise<R>;
+}
+
+export default axiosInstance;

@@ -9,6 +9,7 @@ import { createStyles } from 'antd-style';
 
 const useStyles = createStyles(({ token }) => {
   const primaryColor = token.colorPrimary;
+  const motionDurationSlow = token.motionDurationSlow;
   return {
     container: {
       display: 'flex',
@@ -18,6 +19,7 @@ const useStyles = createStyles(({ token }) => {
       '&:hover': {
         color: primaryColor,
       },
+      transition: `all ${motionDurationSlow}`,
       cursor: 'pointer',
     },
   };
