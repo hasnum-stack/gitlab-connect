@@ -9,12 +9,8 @@ function getProjectsService(params?: any) {
   });
 }
 // 获取项目详情
-function getProjectService(id: number) {
-  return service.get<ProjectInfo>(create().projects().setProjectId(id).finish(), {
-    params: {
-      test: 123,
-    },
-  });
+function getProjectService(id: string) {
+  return service.get<ProjectInfo>(create().projects().setProjectId(id).finish(), {});
 }
 
 // 创建项目分支
