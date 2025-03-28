@@ -6,6 +6,10 @@ function getProxy() {
         target,
         changeOrigin: true,
       },
+      '/hasnum_provider': {
+        target: 'http://localhost:8888',
+        changeOrigin: true,
+      },
     };
   }
 }

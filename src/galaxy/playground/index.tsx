@@ -1,7 +1,20 @@
-import { B } from './B.ts';
-B();
-const aaaa = [1, 2, 3];
-console.log([...aaaa]);
+import { create } from 'zustand';
+import { Part } from '@/mf/index';
+const useTest = create()(set => ({
+  a: 1,
+  b: 2,
+  set,
+}));
+// const useC = create(set => {
+//   c: '123';
+// });
+// const useD = create({
+//   d: 123,
+// });
+// import { B } from './B.ts';
+// // B();
+// const aaaa = [1, 2, 3];
+// console.log([...aaaa]);
 const b = {
   test: 231,
 };
@@ -15,9 +28,22 @@ console.log({ ...b });
 console.log(a?.bbb);
 
 function PlayGround() {
-  return <div>PlayGround</div>;
+  const { a, b, set } = useTest(state => state);
+  return (
+    <div
+      onClick={() => {
+        useTest.setState({ a: 2 });
+      }}
+    >
+      PlayGround
+      <div>a:{a}</div>
+      <div>b:{b}</div>
+    </div>
+  );
 }
+
 export default PlayGround;
+
 function f(...[a, b, c]) {
   return a + b + c;
 }
