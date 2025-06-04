@@ -1,8 +1,8 @@
+import { getProjectService } from '@/services';
 import { Button } from 'antd';
 import { ListRestart } from 'lucide-react';
-import { useGitlabListStore } from '../../store';
 import projectIds from '../../../../utils/projectIds';
-import { getProjectService } from '@/services';
+import { useGitlabListStore } from '../../store';
 
 function Refresh() {
   const setGitlabList = useGitlabListStore(state => state.setGitlabList);

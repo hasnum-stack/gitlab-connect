@@ -1,4 +1,4 @@
-import type { ProjectInfo, BranchFormValues, BranchSelectOptions } from '@/galaxy/gitlab-list/types';
+import type { BranchFormValues, BranchSelectOptions, ProjectInfo } from '@/galaxy/gitlab-list/types';
 import create from '@/utils/createFetchUrl';
 import service from '@/utils/service';
 import type React from 'react';

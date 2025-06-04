@@ -1,15 +1,15 @@
 import { Col, Flex, Row, Space, Table, Typography } from 'antd';
 const { Paragraph } = Typography;
 import HistoryClipboard from '@/galaxy/gitlab-list/components/HistoryClipboard';
+import { formSystemClipboardToHistoryClipboard } from '@/utils/toClipboard';
 import BranchSelect from './components/BranchSelect';
 import CreateBranch from './components/CreateBranch';
 import DeleteBranch from './components/DeleteBranch';
-import ProtectedBranch from './components/ProtectedBranch';
 import MergeBranch from './components/MergeBranch';
+import ProtectedBranch from './components/ProtectedBranch';
 import Refresh from './components/Refresh';
 import { useGitlabListSelectState, useGitlabListStore } from './store';
 import type { ProjectInfo } from './types';
-import { formSystemClipboardToHistoryClipboard } from '@/utils/toClipboard';
 
 const columns = [
   {

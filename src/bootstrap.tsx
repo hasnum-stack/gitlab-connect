@@ -1,8 +1,8 @@
 import '@/styles/index.ts';
+import AntdConfig from '@/components/AntdConfig';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import AntdConfig from '@/components/AntdConfig';
 const rootElement = document.getElementById('root');
 
 if (rootElement) {

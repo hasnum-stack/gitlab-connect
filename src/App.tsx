@@ -1,11 +1,12 @@
-import GitlabList from '@/galaxy/gitlab-list';
-import RightClickMenu from '@/components/RightClickMenu';
 import CopyListener from '@/components/CopyListener';
+import RightClickModal from '@/components/RightClickModal';
+import GitlabList from '@/galaxy/gitlab-list';
 const App = () => {
   return (
     <>
       <GitlabList />
-      <RightClickMenu />
+      <RightClickModal />
+      {/*<RightClickMenu />*/}
       <CopyListener />
     </>
   );

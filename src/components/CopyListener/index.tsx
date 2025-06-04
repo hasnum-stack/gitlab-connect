@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import { formSystemClipboardToHistoryClipboard } from '@/utils/toClipboard';
+import { useEffect } from 'react';
 
 const CopyListener = () => {
   useEffect(() => {

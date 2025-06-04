@@ -1,7 +1,7 @@
 import { useHistoryClipboard } from '@/stores/history-clipboard';
 import toClipboard from '@/utils/toClipboard';
-import { Button, Flex } from 'antd';
-import { Copy } from 'lucide-react';
+import { Button, Flex, Space } from 'antd';
+import { Copy, X } from 'lucide-react';
 import type React from 'react';
 import { useRef } from 'react';
 
@@ -55,13 +55,27 @@ function HistoryClipboard() {
             {...createDragHandler(index)}
           >
             <div key={item}>{item}</div>
-            <Button
-              shape='circle'
-              icon={<Copy size={12} />}
-              onClick={() => {
-                toClipboard(item);
-              }}
-            />
+            <Space>
+              <Button
+                shape='circle'
+                icon={<Copy size={12} />}
+                onClick={() => {
+                  toClipboard(item);
+                }}
+              />
+              <Button
+                color='danger'
+                shape='circle'
+                icon={<X size={12} />}
+                onClick={() => {
+                  const _clipboard = [...clipboard];
+                  _clipboard.splice(index, 1);
+                  useHistoryClipboard.setState({
+                    clipboard: _clipboard,
+                  });
+                }}
+              />
+            </Space>
           </Flex>
         );
       })}
@@ -77,4 +91,5 @@ function HistoryClipboard() {
     </div>
   );
 }
+
 export default HistoryClipboard;

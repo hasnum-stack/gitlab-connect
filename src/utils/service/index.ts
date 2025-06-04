@@ -1,6 +1,6 @@
+import { message } from 'antd';
 import axios, { HttpStatusCode } from 'axios';
 import type { AxiosInstance, AxiosRequestConfig } from 'axios';
-import { message } from 'antd';
 const token = import.meta.env.PUBLIC_SERVICE_TOKEN;
 const baseURL = import.meta.env.PUBLIC_SERVICE_BASEURL;
 const Authorization = `Bearer ${token}`;

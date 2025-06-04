@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { Dropdown } from 'antd';
 import { useHistoryClipboard } from '@/stores/history-clipboard';
 import toClipboard from '@/utils/toClipboard';
+import { Dropdown } from 'antd';
+import { useEffect, useState } from 'react';
 
 const RightClickMenu = () => {
   const [menuVisible, setMenuVisible] = useState(false);

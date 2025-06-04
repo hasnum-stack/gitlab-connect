@@ -1,5 +1,5 @@
-import { create } from 'zustand';
 import { Part } from '@/mf/index';
+import { create } from 'zustand';
 const useTest = create()(set => ({
   a: 1,
   b: 2,

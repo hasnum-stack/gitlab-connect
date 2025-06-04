@@ -1,5 +1,5 @@
-import { Button, Form, Input, message, Modal, Tag } from 'antd';
 import { deleteProjectBranchService } from '@/services';
+import { Button, Form, Input, Modal, Tag, message } from 'antd';
 import { useState } from 'react';
 import { useGitlabListSelectState } from '../../store';
 const FormItem = Form.Item;

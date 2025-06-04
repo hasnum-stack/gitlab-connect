@@ -1,10 +1,10 @@
-import type { FormInstance } from 'antd';
-import { Button, Col, Form, Input, message, Modal, Row } from 'antd';
+import type { ProjectInfo } from '@/galaxy/gitlab-list/types';
 import { createProjectMergeRequestsService } from '@/services';
+import { useHistoryClipboard } from '@/stores/history-clipboard';
+import type { FormInstance } from 'antd';
+import { Button, Col, Form, Input, Modal, Row, message } from 'antd';
 import { useEffect, useState } from 'react';
 import { useGitlabListSelectState } from '../../store';
-import { useHistoryClipboard } from '@/stores/history-clipboard';
-import type { ProjectInfo } from '@/galaxy/gitlab-list/types';
 
 const FormItem = Form.Item;
 type FormValues = {

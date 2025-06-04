@@ -1,6 +1,6 @@
+import { createModuleFederationConfig, pluginModuleFederation } from '@module-federation/rsbuild-plugin';
 import type { RsbuildPlugin } from '@rsbuild/core';
 import pkg from '../package.json';
-import { pluginModuleFederation, createModuleFederationConfig } from '@module-federation/rsbuild-plugin';
 const dep = pkg.dependencies;
 
 export const pluginMF = (): RsbuildPlugin => {

@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { Select, Flex } from 'antd';
 import type { ProjectInfo } from '@/galaxy/gitlab-list/types';
 import { getProjectBranchesService } from '@/services';
 import toClipboard from '@/utils/toClipboard';
 import { useDebounceFn } from 'ahooks';
-import { GitBranch } from 'lucide-react';
+import { Flex, Select } from 'antd';
 import { createStyles } from 'antd-style';
+import { GitBranch } from 'lucide-react';
+import { useState } from 'react';
 
 const useStyles = createStyles(({ token }) => {
   const primaryColor = token.colorPrimary;
